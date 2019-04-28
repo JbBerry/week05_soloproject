@@ -5,8 +5,9 @@ var logger = require("morgan");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 
-var albumRouter = require("./routes/students");
-var trackRouter = require("./routes/assignments");
+var studentRouter = require("./routes/students");
+var assignmentRouter = require("./routes/assessments");
+var markRouter = require("./routes/marks");
 
 var app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/students", studentRouter);
-app.use("/assignments", assignmentRouter);
+app.use("/assessments", assignmentRouter);
+app.use("/marks", markRouter);
 
 module.exports = app;

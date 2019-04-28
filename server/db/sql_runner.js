@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 const pool = new Pool({
   host: "localhost",
-  database: "album_ratings"
+  database: "classroom"
 });
 
 class SqlRunner {

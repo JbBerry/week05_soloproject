@@ -1,22 +1,22 @@
+DROP TABLE marks;
 DROP TABLE students;
 DROP TABLE assessments;
-DROP TABLE marks;
 
 CREATE TABLE students(
-  id SERIAL PRIMARY KEY,
+  student_id SERIAL PRIMARY KEY,
   name VARCHAR(255)
 );
 
 CREATE TABLE assessments(
-  id SERIAL PRIMARY KEY,
+  assessment_id SERIAL PRIMARY KEY,
   title VARCHAR(255)
 );
 
 CREATE TABLE marks(
-  id SERIAL PRIMARY KEY,
+  mark_id SERIAL PRIMARY KEY,
   score INT,
-  student_id INT REFERENCES students(id),
-  assessment_id INT  REFERENCES assessments(id)
+  student_id INT REFERENCES students(student_id),
+  assessment_id INT REFERENCES assessments(assessment_id)
 );
 
 
