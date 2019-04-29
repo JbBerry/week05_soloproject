@@ -6,30 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="js/bundle.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <title>MCU</title>
+    <title>Classroom</title>
   </head>
   <body>
 
     <div class="ui container">
       <h1>Classroom</h1>
-      <h4 class="ui horizontal divider header">
-        <!-- <i class="film icon"></i> -->
-      </h4>
-      <div id="button-container"></div>
-      <!-- need 3 buttons. ADD student. ADD assessment MARK assessment -->
-    </div>
-    <div class="ui container">
+      <br>
+      <div class="ui two column left grid">
+          <input type="click" class="column ui large button" id="add-mark" value="Mark an Assignment" />
+        <div class="four column left row">
+          <input type="click" class="column ui small button" id="add-student" value="New Student">
+          <input type="click" class="column ui small button" id="add-assessment" value="New Assignment">
+        </div>
+      </div>
+      <br>
+      <div id="form-container"></div>
       <h3>Students</h3>
-      <h4 class="ui horizontal divider header">
-        <!-- <i class="film icon"></i> -->
-      </h4>
       <div id="student-container" class="ui cards"></div>
-    </div>
-
-    <div>
-      <h4 class="ui horizontal divider header">
-        <i class="plus"></i>
-      </h4>
     </div>
     <!-- <form class="ui form" id="character-form">
       <div class="three fields">

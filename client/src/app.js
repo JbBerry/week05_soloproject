@@ -9,14 +9,30 @@ const StudentView = require('./views/student_view.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // const characterContainer = document.querySelector('#character-container');
-  // const characterView = new CharacterView(characterContainer);
-  // characterView.bindEvents();
-  //
-  // const characters = new Characters();
-  // characters.getData();
-  //
-  // const formElement = document.querySelector('#character-form');
-  // const characterFormView = new CharacterFormView(formElement);
-  // characterFormView.bindEvents();
+
+  const assessmentFormView = new AssessmentFormView();
+  assessmentFormView.bindEvents();
+
+  // const markFormView = new MarkFormView();
+  // markFormView.bindEvents();
+
+  const studentFormView = new StudentFormView();
+  studentFormView.bindEvents();
+
+  const studentView = new StudentView();
+  studentView.bindEvents();
+
+  const assessmentModel = new AssessmentModel();
+  assessmentModel.getData();
+  assessmentModel.getTitles();
+  assessmentModel.addAssessment();
+
+  // const markModel = new MarkModel();
+  // markModel.bindEvents();
+
+  const studentModel = new StudentModel();
+  studentModel.getData();
+  studentModel.getNames();
+  studentModel.addStudent();
+
 });
