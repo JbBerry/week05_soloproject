@@ -4,7 +4,7 @@ var SqlRunner = require('../db/sql_runner');
 
 /* GET all assignments. */
 router.get('/', function(req, res, next) {
-  SqlRunner.run("SELECT * FROM assessments")
+  SqlRunner.run('SELECT * FROM assessments')
   .then((result)=>{
     res.status(200).json(result.rows);
   })
@@ -12,9 +12,9 @@ router.get('/', function(req, res, next) {
 
 /* GET all assessments and student marks. */
 router.get('/all', function(req, res, next) {
-  SqlRunner.run(`SELECT * FROM assessments`)
+  SqlRunner.run('SELECT * FROM assessments')
   .then((assessments)=>{
-    SqlRunner.run(`SELECT * FROM marks INNER JOIN students ON students.student_id = marks.student_id`)
+    SqlRunner.run('SELECT * FROM marks INNER JOIN students ON students.student_id = marks.student_id')
     .then((marks)=>{
       const assessmentList = assessments.rows;
       const markList = marks.rows;
@@ -32,7 +32,7 @@ router.get('/all', function(req, res, next) {
   });
 });
 
-// ADD a NEW assignment
+/* ADD a NEW assignment. */
 router.post('/', function(req, res){
   SqlRunner.run('INSERT INTO assessments (title) VALUES ($1)', [req.body.title])
   .then((result) => {

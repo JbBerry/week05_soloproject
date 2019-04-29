@@ -12,9 +12,9 @@ router.get('/', function(req, res, next) {
 
 /* GET all students and their assessment marks. */
 router.get('/all', function(req, res, next) {
-  SqlRunner.run(`SELECT * FROM students`)
+  SqlRunner.run('SELECT * FROM students')
   .then((students)=>{
-    SqlRunner.run(`SELECT * FROM marks INNER JOIN assessments ON assessments.assessment_id = marks.assessment_id`)
+    SqlRunner.run('SELECT * FROM marks INNER JOIN assessments ON assessments.assessment_id = marks.assessment_id')
     .then((marks)=>{
       const studentList = students.rows;
       const markList = marks.rows;
@@ -32,7 +32,7 @@ router.get('/all', function(req, res, next) {
   });
 });
 
-// ADD a NEW student
+/* ADD a NEW student. */
 router.post('/', function(req, res){
   SqlRunner.run('INSERT INTO students (name) VALUES ($1)', [req.body.name])
   .then((result) => {
