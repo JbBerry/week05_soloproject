@@ -24,10 +24,13 @@ class StudentForm {
     addButton.classList.add('ui', 'purple','button');
     addButton.textContent = `Add New Student`;
 
+    const cancelButton = document.createElement('button');
+    addButton.classList.add('ui','button');
+    addButton.textContent = `Cancel`;
+
     const details = document.createElement('form');
     details.classList.add('content','ui','form');
     details.addEventListener('submit', (event) => {
-      // event.preventDefault();
       const newStudent = {};
       newStudent.name = event.target['name'].value;
       PubSub.publish('Add-New-Student', newStudent);
@@ -41,7 +44,6 @@ class StudentForm {
     details.appendChild(addButton);
     tile.appendChild(details);
     this.container.appendChild(tile)
-    // return tile;
   }
 }
 

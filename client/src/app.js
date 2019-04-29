@@ -13,8 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const assessmentFormView = new AssessmentFormView();
   assessmentFormView.bindEvents();
 
-  // const markFormView = new MarkFormView();
-  // markFormView.bindEvents();
+  const markFormView = new MarkFormView();
+  markFormView.getStudentNames();
+  markFormView.getAssessmentTitles();
+  markFormView.bindEvents();
 
   const studentFormView = new StudentFormView();
   studentFormView.bindEvents();
@@ -27,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   assessmentModel.getTitles();
   assessmentModel.addAssessment();
 
-  // const markModel = new MarkModel();
-  // markModel.bindEvents();
+  const markModel = new MarkModel();
+  markModel.addMark();
 
   const studentModel = new StudentModel();
   studentModel.getData();

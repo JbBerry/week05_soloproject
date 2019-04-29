@@ -17,7 +17,7 @@ class AssessmentForm {
   newAssessmentTile(){
     const newAssessmentName = document.createElement('input');
     newAssessmentName.classList.add('field');
-    newAssessmentName.placeholder=('Assignment Name');
+    newAssessmentName.placeholder=('Assignment Title');
     newAssessmentName.id="title";
 
     const addButton = document.createElement('button');
@@ -41,7 +41,6 @@ class AssessmentForm {
     details.appendChild(addButton);
     tile.appendChild(details);
     this.container.appendChild(tile)
-    // return tile;
   }
 }
 
