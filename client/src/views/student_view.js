@@ -9,11 +9,9 @@ class StudentView{
 
   bindEvents() {
     PubSub.subscribe('All-Student-Data-Ready', (event) => {
-      console.log(`All-Student-Data received`);
+      // console.log(`All-Student-Data received`);
       const studentData = event.detail;
-      console.log(studentData);
       this.render(studentData);
-
     });
   }
 
@@ -33,18 +31,13 @@ class StudentView{
     const currentMark = document.createElement('div');
     currentMark.classList.add('student-mark')
     if (student.marks.length > 0){
-      let totalMark = 0;
-      student.marks.forEach((mark,i) =>{
-        totalMark += student.marks[i].score
-      });
-      const averageMark = totalMark / student.marks.length;
-      currentMark.innerHTML = `${averageMark} %`
+      currentMark.innerHTML = `${student.average_mark} %`
     };
 
     const currentGrade = document.createElement('div');
     currentGrade.classList.add('student-grade')
     if (student.marks.length > 0){
-      currentGrade.innerHTML = 'A'
+      currentGrade.innerHTML = `${student.grade}`;
     };
 
     const text = document.createElement('div');
@@ -80,5 +73,19 @@ class StudentView{
 
     return tile;
   };
+
+  getAverage(student){
+    let totalMark = 0;
+    student.marks.forEach((mark,i) =>{
+      totalMark += student.marks[i].score
+    });
+    const averageMark = totalMark / student.marks.length;
+    return averageMark;
+  ;}
+
+  getGrade(mark){
+
+  };
+
 }
 module.exports =  StudentView;

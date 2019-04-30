@@ -15,31 +15,35 @@ class StudentForm {
     })
   }
   newStudentTile(){
+    const description = document.createElement('div');
+    description.classList.add('form-title');
+    description.textContent = `New Student:`;
+
     const newStudentName = document.createElement('input');
-    newStudentName.classList.add('field');
-    newStudentName.placeholder=('Student Name');
+    newStudentName.classList.add('form-field');
+    newStudentName.placeholder=('   Name');
     newStudentName.id="name";
 
     const addButton = document.createElement('button');
-    addButton.classList.add('ui', 'purple','button');
+    addButton.classList.add('positive-button','form-confirm-button');
     addButton.textContent = `Add New Student`;
 
     const cancelButton = document.createElement('button');
-    cancelButton.classList.add('ui','button');
+    cancelButton.classList.add('negative-button','form-cancel-button');
     cancelButton.textContent = `cancel`;
     cancelButton.addEventListener('click', (event) => {
       this.container.innerHTML = '';
     });
 
     const buttons = document.createElement('div');
-    buttons.classList.add('ui', 'buttons');
     buttons.appendChild(addButton);
     buttons.appendChild(cancelButton);
 
+    const form = document.createElement('form');
 
-    const details = document.createElement('form');
-    details.classList.add('content','ui','form');
-    details.addEventListener('submit', (event) => {
+    const tile = document.createElement('div');
+    tile.classList.add('form-tile');
+    tile.addEventListener('submit', (event) => {
       const newStudent = {};
       newStudent.name = event.target['name'].value;
       console.log(`publishing ${newStudent.name}`);
@@ -47,12 +51,11 @@ class StudentForm {
       details.reset();
     });
 
-    const tile = document.createElement('div');
-    tile.classList.add('ui','card');
 
-    details.appendChild(newStudentName);
-    details.appendChild(buttons);
-    tile.appendChild(details)
+    tile.appendChild(description);
+    form.appendChild(newStudentName);
+    form.appendChild(buttons)
+    tile.appendChild(form);
     this.container.appendChild(tile)
   }
 }

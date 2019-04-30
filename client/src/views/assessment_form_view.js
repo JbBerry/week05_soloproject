@@ -15,42 +15,45 @@ class AssessmentForm {
     })
   }
   newAssessmentTile(){
+    const description = document.createElement('label');
+    description.classList.add('form-title');
+    description.textContent = `New Assignment:`;
+
     const newAssessmentName = document.createElement('input');
-    newAssessmentName.classList.add('field');
-    newAssessmentName.placeholder=('Assignment Title');
+    newAssessmentName.classList.add('form-field');
+    newAssessmentName.placeholder=('   Title');
     newAssessmentName.id="title";
 
     const addButton = document.createElement('button');
-    addButton.classList.add('ui', 'purple','button');
+    addButton.classList.add('positive-button','form-confirm-button');
     addButton.textContent = `Add New Assignment`;
 
     const cancelButton = document.createElement('button');
-    cancelButton.classList.add('ui','button');
+    cancelButton.classList.add('negative-button','form-cancel-button');
     cancelButton.textContent = `cancel`;
     cancelButton.addEventListener('click', (event) => {
       this.container.innerHTML = '';
     });
 
     const buttons = document.createElement('div');
-    buttons.classList.add('ui', 'buttons');
     buttons.appendChild(addButton);
     buttons.appendChild(cancelButton);
 
-    const details = document.createElement('form');
-    details.classList.add('content','ui','form');
-    details.addEventListener('submit', (event) => {
+    const form = document.createElement('form');
+
+    const tile = document.createElement('div');
+    tile.classList.add('form-tile');
+    tile.addEventListener('submit', (event) => {
       const newAssessment = {};
       newAssessment.title = event.target['title'].value;
       PubSub.publish('Add-New-Assessment', newAssessment);
       details.reset();
     });
 
-    const tile = document.createElement('div');
-    tile.classList.add('ui','card');
-
-    details.appendChild(newAssessmentName);
-    details.appendChild(buttons)
-    tile.appendChild(details);
+    tile.appendChild(description);
+    form.appendChild(newAssessmentName);
+    form.appendChild(buttons)
+    tile.appendChild(form);
     this.container.appendChild(tile)
   }
 }

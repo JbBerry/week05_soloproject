@@ -1,5 +1,8 @@
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js');
+const Grades = require('./grades.js');
+
+const grades = new Grades();
 
 class Students{
 
@@ -14,6 +17,16 @@ class Students{
     request.get()
       .then((studentData) => {
         this.studentData = studentData;
+        studentData.forEach((student) =>{
+          let totalMark = 0;
+          student.marks.forEach((mark,i) =>{
+            totalMark += student.marks[i].score
+          });
+          const averageMark = totalMark / student.marks.length;
+          student.average_mark = averageMark;
+          student.grade = grades.getGrade(averageMark);
+
+        })
         PubSub.publish('All-Student-Data-Ready', this.studentData);
       })
       .catch((message) => {

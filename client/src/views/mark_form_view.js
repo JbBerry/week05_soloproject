@@ -30,9 +30,19 @@ class MarkForm {
   }
 
   newMarkTile(){
+    const formDescription = document.createElement('div');
+    formDescription.classList.add('form-title');
+    formDescription.textContent = `Assignment Marked`;
+
+    const studentDescription = document.createElement('label');
+    studentDescription.classList.add('form-text');
+    studentDescription.textContent = `Student Name:`;
+
     const studentName = document.createElement('select');
-    studentName.classList.add('field');
-    studentName.placeholder=('Student Name');
+    studentName.classList.add('form-field');
+      let blankOption = document.createElement('option');
+      blankOption.value = "";
+      studentName.appendChild(blankOption)
     this.studentNames.forEach((student) =>{
       const option = document.createElement('option');
       option.textContent = student.name;
@@ -41,9 +51,15 @@ class MarkForm {
     });
     studentName.id="name";
 
+    const assessmentDescription = document.createElement('label');
+    assessmentDescription.classList.add('form-text');
+    assessmentDescription.textContent = `Assignment Title:`;
+
     const assessmentTitle = document.createElement('select');
-    assessmentTitle.classList.add('field');
-    assessmentTitle.placeholder=('Assignment Title');
+    assessmentTitle.classList.add('form-field');
+      let blankOption2 = document.createElement('option');
+      blankOption2.value = "";
+      assessmentTitle.appendChild(blankOption2)
     this.assessmentTitles.forEach((assessment) =>{
       const option = document.createElement('option');
       option.textContent = assessment.title;
@@ -52,32 +68,35 @@ class MarkForm {
     });
     assessmentTitle.id="title";
 
+    const markDescription = document.createElement('label');
+    markDescription.classList.add('form-text');
+    markDescription.textContent = `Assignment Mark:`;
+
     const assessmentMark = document.createElement('input');
-    assessmentMark.classList.add('field');
-    assessmentMark.placeholder = ('Assignment Mark');
+    assessmentMark.classList.add('form-field');
+    // assessmentMark.placeholder = ('Mark');
     assessmentMark.id="score";
 
     const addButton = document.createElement('button');
-    addButton.classList.add('ui', 'purple','button');
+    addButton.classList.add('positive-button','form-confirm-button');
     addButton.textContent = `Mark Assignment`;
 
     const cancelButton = document.createElement('button');
-    cancelButton.classList.add('ui','button');
+    cancelButton.classList.add('negative-button','form-cancel-button');
     cancelButton.textContent = `cancel`;
     cancelButton.addEventListener('click', (event) => {
       this.container.innerHTML = '';
     });
 
     const buttons = document.createElement('div');
-    buttons.classList.add('ui', 'buttons');
     buttons.appendChild(addButton);
     buttons.appendChild(cancelButton);
 
+    const form = document.createElement('form');
 
-    const details = document.createElement('form');
-    details.classList.add('content','ui','form');
-    details.addEventListener('submit', (event) => {
-
+    const tile = document.createElement('form');
+    tile.classList.add('form-tile');
+    tile.addEventListener('submit', (event) => {
       const newMark = {};
       newMark.score = event.target['score'].value;
       newMark.student_id = event.target['name'].value;
@@ -86,14 +105,15 @@ class MarkForm {
       details.reset();
     });
 
-    const tile = document.createElement('div');
-    tile.classList.add('ui','card');
-
-    details.appendChild(studentName);
-    details.appendChild(assessmentTitle);
-    details.appendChild(assessmentMark);
-    details.appendChild(buttons);
-    tile.appendChild(details);
+    tile.appendChild(formDescription);
+    form.appendChild(studentDescription);
+    form.appendChild(studentName);
+    form.appendChild(assessmentDescription);
+    form.appendChild(assessmentTitle);
+    form.appendChild(markDescription);
+    form.appendChild(assessmentMark);
+    form.appendChild(buttons);
+    tile.appendChild(form);
     this.container.appendChild(tile)
   }
 }
