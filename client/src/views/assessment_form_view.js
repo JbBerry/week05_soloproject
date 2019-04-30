@@ -24,10 +24,21 @@ class AssessmentForm {
     addButton.classList.add('ui', 'purple','button');
     addButton.textContent = `Add New Assignment`;
 
+    const cancelButton = document.createElement('button');
+    cancelButton.classList.add('ui','button');
+    cancelButton.textContent = `cancel`;
+    cancelButton.addEventListener('click', (event) => {
+      this.container.innerHTML = '';
+    });
+
+    const buttons = document.createElement('div');
+    buttons.classList.add('ui', 'buttons');
+    buttons.appendChild(addButton);
+    buttons.appendChild(cancelButton);
+
     const details = document.createElement('form');
     details.classList.add('content','ui','form');
     details.addEventListener('submit', (event) => {
-      // event.preventDefault();
       const newAssessment = {};
       newAssessment.title = event.target['title'].value;
       PubSub.publish('Add-New-Assessment', newAssessment);
@@ -38,7 +49,7 @@ class AssessmentForm {
     tile.classList.add('ui','card');
 
     details.appendChild(newAssessmentName);
-    details.appendChild(addButton);
+    details.appendChild(buttons)
     tile.appendChild(details);
     this.container.appendChild(tile)
   }

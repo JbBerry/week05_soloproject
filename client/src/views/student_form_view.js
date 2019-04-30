@@ -25,14 +25,24 @@ class StudentForm {
     addButton.textContent = `Add New Student`;
 
     const cancelButton = document.createElement('button');
-    addButton.classList.add('ui','button');
-    addButton.textContent = `Cancel`;
+    cancelButton.classList.add('ui','button');
+    cancelButton.textContent = `cancel`;
+    cancelButton.addEventListener('click', (event) => {
+      this.container.innerHTML = '';
+    });
+
+    const buttons = document.createElement('div');
+    buttons.classList.add('ui', 'buttons');
+    buttons.appendChild(addButton);
+    buttons.appendChild(cancelButton);
+
 
     const details = document.createElement('form');
     details.classList.add('content','ui','form');
     details.addEventListener('submit', (event) => {
       const newStudent = {};
       newStudent.name = event.target['name'].value;
+      console.log(`publishing ${newStudent.name}`);
       PubSub.publish('Add-New-Student', newStudent);
       details.reset();
     });
@@ -41,8 +51,8 @@ class StudentForm {
     tile.classList.add('ui','card');
 
     details.appendChild(newStudentName);
-    details.appendChild(addButton);
-    tile.appendChild(details);
+    details.appendChild(buttons);
+    tile.appendChild(details)
     this.container.appendChild(tile)
   }
 }

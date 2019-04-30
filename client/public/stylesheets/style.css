@@ -1,8 +1,164 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+.page-grid{
+  margin: 2px;
+  display: grid;
+  background-color: #efefef;
+  font: 16px "Trebuchet MS", Helvetica, sans-serif;
+  height: 100vh;
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: 100px 100px 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar buttons"
+    "sidebar main";
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+.title-bar{
+  grid-area: header;
+  /* background-image: linear-gradient(to bottom, #90caf9 70%, #e3f2fd); */
+  background-color: #90caf9;
+  text-indent: 2em;
+  font-size: 40px;
+  border: solid #5d99c6 1px;
+  border-top: solid #5d99c6 20px;
+  border-bottom: 0;
+}
+.student-container{
+  grid-area: sidebar;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* border-style: solid;
+  border-width: 2px;
+  border-color: red; */
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.student-tile{
+  width: 330px;
+  height: 110px;
+  margin-top: 10px;
+  cursor: pointer;
+  align-self: flex-start;
+  border-radius: 10px;
+  background-color: #bcbcbc;
+  display: grid;
+  grid-template-columns: 230px 50px 50px;
+  grid-template-rows: 50px 30px 30px;
+  grid-template-areas:
+    "name mark grade"
+    "text text text"
+    "assessment assessment percent";
+  /* border-style: solid; */
+  /* border-width: 1px;
+  border-color: blue; */
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.student-name{
+  grid-area: name;
+  background-color: #90caf9;
+  line-height: 50px;
+  text-indent: 1em;
+  border-top: solid #5d99c6 5px;
+  /* border-style: solid;
+  border-width: 1px;
+  border-color: blue; */
+}
+.student-mark{
+  grid-area: mark;
+  text-align: center;
+  background-color: #90caf9;
+  line-height: 50px;
+  border-top: solid #5d99c6 5px;
+  /* border-style: solid;
+  border-width: 1px;
+  border-color: blue; */
+}
+.student-grade{
+  grid-area: grade;
+  text-align: center;
+  background-color: #90caf9;
+  line-height: 50px;
+  border-top: solid #5d99c6 5px;
+  /* border-style: solid;
+  border-width: 1px;
+  border-color: blue; */
+}
+.student-text{
+  grid-area: text;
+  text-indent: 1em;
+  border-top: solid #5d99c6 2px;
+  /* border-style: solid;
+  border-width: 1px;
+  border-color: blue; */
+}
+.student-assessment{
+  grid-area: assessment;
+  text-indent: 1em;
+  border-top: solid #5d99c6 2px;
+  /* border-style: solid;
+  border-width: 1px;
+  border-color: blue; */
+}
+.student-assessment-grade{
+  grid-area: percent;
+  text-align: center;
+  border-top: solid #5d99c6 2px;
+  /* border-style: solid;
+  border-width: 1px;
+  border-color: blue; */
+}
+.button-container{
+  grid-area: buttons;
+  margin: 2px;
+  background-color: #d9d9d9;
+  /* border-style: solid;
+  border-width: 2px;
+  border-color: red; */
+  display: grid;
+  grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+  grid-template-rows: 0.6fr 0.4fr;
+  grid-template-areas:
+    "mark-assessment mark-assessment mark-assessment mark-all-assessment mark-all-assessment"
+    "new-student new-student new-assessment new-assessment empty"
+}
+.button-mark-assessment{
+  grid-area: mark-assessment;
+
+  background-color: #90caf9;
+  border: solid #5d99c6 2px;
+  border-radius: 10px 10px 0px 0px
+}
+.button-mark-all-assessment{
+  grid-area: mark-all-assessment;
+}
+.button-new-student{
+  grid-area: new-student;
+  border-radius: 0px 0px 0px 10px
+}
+.button-new-assessment{
+  grid-area: new-assessment;
+  border-radius: 0px 10px 10px 0px
+}
+button {
+  background-color: #bcbcbc;
+  border: solid #8c8c8c 2px;
+  /* border-radius: 10px; */
+  text-align: center;
+  transition: 0.3s;
+  /* display: inline-block; */
+  cursor: pointer;
+  outline: none;
+}
+button:hover {
+  opacity: 1;
 }
 
-a {
-  color: #00B7FF;
+.form-space{
+  grid-area: main;
+  border-style: solid;
+  border-width: 2px;
+  border-color: red;
 }

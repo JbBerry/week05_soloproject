@@ -61,6 +61,19 @@ class MarkForm {
     addButton.classList.add('ui', 'purple','button');
     addButton.textContent = `Mark Assignment`;
 
+    const cancelButton = document.createElement('button');
+    cancelButton.classList.add('ui','button');
+    cancelButton.textContent = `cancel`;
+    cancelButton.addEventListener('click', (event) => {
+      this.container.innerHTML = '';
+    });
+
+    const buttons = document.createElement('div');
+    buttons.classList.add('ui', 'buttons');
+    buttons.appendChild(addButton);
+    buttons.appendChild(cancelButton);
+
+
     const details = document.createElement('form');
     details.classList.add('content','ui','form');
     details.addEventListener('submit', (event) => {
@@ -79,7 +92,7 @@ class MarkForm {
     details.appendChild(studentName);
     details.appendChild(assessmentTitle);
     details.appendChild(assessmentMark);
-    details.appendChild(addButton);
+    details.appendChild(buttons);
     tile.appendChild(details);
     this.container.appendChild(tile)
   }

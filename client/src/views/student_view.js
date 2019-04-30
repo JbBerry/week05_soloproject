@@ -27,52 +27,56 @@ class StudentView{
 
   createTile(student) {
     const studentName = document.createElement('div');
-    studentName.classList.add('header');
+    studentName.classList.add('student-name');
     studentName.textContent = `${student.name}`;
 
-    const currentGrade = document.createElement('div');
+    const currentMark = document.createElement('div');
+    currentMark.classList.add('student-mark')
     if (student.marks.length > 0){
-
       let totalMark = 0;
       student.marks.forEach((mark,i) =>{
         totalMark += student.marks[i].score
       });
       const averageMark = totalMark / student.marks.length;
-      currentGrade.innerHTML = `Current grade ${averageMark}`
+      currentMark.innerHTML = `${averageMark} %`
     };
 
-    const marks = document.createElement('div');
+    const currentGrade = document.createElement('div');
+    currentGrade.classList.add('student-grade')
     if (student.marks.length > 0){
-      student.marks.forEach((mark,i) => {
-        const grade = document.createElement('div');
-        grade.innerHTML = `${student.marks[i].title}: ${student.marks[i].score}`;
-        marks.appendChild(grade);
-      });
+      currentGrade.innerHTML = 'A'
     };
 
-    const details = document.createElement('div');
-    details.classList.add("content");
+    const text = document.createElement('div');
+    text.classList.add('student-text');
+    if (student.marks.length > 0){
+      text.innerHTML = 'Last Assignment';
+    };
 
-    const detailsButton = document.createElement('button');
-    detailsButton.classList.add('ui', 'purple','button');
-    detailsButton.textContent = `Details`;
-    detailsButton.addEventListener('click', (event) => {
-      console.log(`view details for ${student.name}`);
-      // set view report card to visable
-    });
-    const buttons = document.createElement('div');
-    buttons.classList.add('ui', 'buttons');
-    buttons.appendChild(detailsButton);
+    const assessment = document.createElement('div');
+    assessment.classList.add('student-assessment');
+    if (student.marks.length > 0){
+      assessment.textContent = student.marks[student.marks.length -1].title;
+    };
 
+    const assessmentMark = document.createElement('div');
+    assessmentMark.classList.add('student-assessment-grade');
+    if (student.marks.length > 0){
+      assessmentMark.textContent = `${student.marks[student.marks.length -1].score} %`;
+    };
 
     const tile = document.createElement('div');
-    tile.classList.add('ui', 'card');
+    tile.classList.add('student-tile');
+    tile.addEventListener('click', (event) => {
+      console.log(`view details for ${student.name}`);
+    });
 
-    details.appendChild(studentName);
-    details.appendChild(currentGrade);
-    details.appendChild(marks);
-    tile.appendChild(details);
-    tile.appendChild(buttons);
+    tile.appendChild(studentName);
+    tile.appendChild(currentMark);
+    tile.appendChild(currentGrade);
+    tile.appendChild(text);
+    tile.appendChild(assessment);
+    tile.appendChild(assessmentMark);
 
     return tile;
   };
