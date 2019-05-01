@@ -41,19 +41,19 @@ class StudentView{
     };
 
     const text = document.createElement('div');
-    text.classList.add('student-text');
+    text.classList.add('student-text','description');
     if (student.marks.length > 0){
       text.innerHTML = 'Last Assignment';
     };
 
     const assessment = document.createElement('div');
-    assessment.classList.add('student-assessment');
+    assessment.classList.add('student-assessment','description');
     if (student.marks.length > 0){
       assessment.textContent = student.marks[student.marks.length -1].title;
     };
 
     const assessmentMark = document.createElement('div');
-    assessmentMark.classList.add('student-assessment-grade');
+    assessmentMark.classList.add('student-assessment-grade','description');
     if (student.marks.length > 0){
       assessmentMark.textContent = `${student.marks[student.marks.length -1].score} %`;
     };
@@ -61,7 +61,9 @@ class StudentView{
     const tile = document.createElement('div');
     tile.classList.add('student-tile');
     tile.addEventListener('click', (event) => {
+      PubSub.publish('View-Student-Details', student);
       console.log(`view details for ${student.name}`);
+      console.log(student);
     });
 
     tile.appendChild(studentName);
@@ -72,19 +74,6 @@ class StudentView{
     tile.appendChild(assessmentMark);
 
     return tile;
-  };
-
-  getAverage(student){
-    let totalMark = 0;
-    student.marks.forEach((mark,i) =>{
-      totalMark += student.marks[i].score
-    });
-    const averageMark = totalMark / student.marks.length;
-    return averageMark;
-  ;}
-
-  getGrade(mark){
-
   };
 
 }

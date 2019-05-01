@@ -6,6 +6,7 @@ const AssessmentFormView = require('./views/assessment_form_view.js');
 const MarkFormView = require('./views/mark_form_view.js');
 const StudentFormView = require('./views/student_form_view.js');
 const StudentView = require('./views/student_view.js');
+const StudentDetailsView = require('./views/student_details_view.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const studentView = new StudentView();
   studentView.bindEvents();
+
+  const studentDetailsView = new StudentDetailsView();
+  studentDetailsView.bindEvents();
+
 
   const assessmentModel = new AssessmentModel();
   assessmentModel.getData();

@@ -3,8 +3,11 @@
   display: grid;
   background-color: #f5f5f5;
   font: 18px "Trebuchet MS", Helvetica, sans-serif;
+  overflow: hidden;
+  text-overflow: clip;
   height: 100vh;
-  grid-template-columns: 350px 0.8fr;
+  width: 100vw;
+  grid-template-columns: 350px 0.9fr;
   grid-template-rows: 100px 100px 1fr;
   grid-template-areas:
     "header header"
@@ -15,7 +18,6 @@
 }
 .title-bar{
   grid-area: header;
-  /* background-image: linear-gradient(to bottom, #90caf9 70%, #e3f2fd); */
   background-color: #90caf9;
   text-indent: 2em;
   font-size: 40px;
@@ -29,9 +31,6 @@
   align-items: center;
   flex-direction: column;
   background-color: #eeeeee;
-  /* border-style: solid;
-  border-width: 2px;
-  border-color: red; */
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -51,89 +50,70 @@
     "name mark grade"
     "text text text"
     "assessment assessment percent";
-  /* border-style: solid; */
-  /* border-width: 1px;
-  border-color: blue; */
   margin: 0 auto;
   margin-top: 10px;
 }
 .student-name{
   grid-area: name;
-  background-color: #90caf9;
+  overflow: hidden;
+  text-overflow: clip;
   line-height: 50px;
   text-indent: 1em;
+  background-color: #90caf9;
   border-top: solid #5d99c6 5px;
-  /* border-style: solid;
-  border-width: 1px;
-  border-color: blue; */
 }
 .student-mark{
   grid-area: mark;
+  line-height: 50px;
   font-size: 14px;
   text-align: center;
   background-color: #90caf9;
-  line-height: 50px;
   border-top: solid #5d99c6 5px;
-  /* border-style: solid;
-  border-width: 1px;
-  border-color: blue; */
 }
 .student-grade{
   grid-area: grade;
-  text-align: center;
   line-height: 50px;
   font-size: 20px;
+  text-align: center;
   font-weight: bold;
   background-color: #90caf9;
   border-top: solid #5d99c6 5px;
-  /* border-style: solid;
-  border-width: 1px;
-  border-color: blue; */
+}
+.description{
+  border-top: solid #5d99c6 2px;
 }
 .student-text{
   grid-area: text;
   font-size: 14px;
   text-indent: 1em;
   border-top: solid #5d99c6 2px;
-  /* border-style: solid;
-  border-width: 1px;
-  border-color: blue; */
 }
 .student-assessment{
   grid-area: assessment;
   text-indent: 1em;
   font-size: 14px;
-  border-top: solid #5d99c6 2px;
-  /* border-style: solid;
-  border-width: 1px;
-  border-color: blue; */
+
 }
 .student-assessment-grade{
   grid-area: percent;
   text-align: center;
-  border-top: solid #5d99c6 2px;
-  /* border-style: solid;
-  border-width: 1px;
-  border-color: blue; */
 }
 .button-container{
   grid-area: buttons;
+  width: 700px;
   margin: 2px;
   background-color: #eeeeee;
-  /* border-style: solid;
-  border-width: 2px;
-  border-color: red; */
   display: grid;
-  grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+  grid-template-columns: 175px 175px 175px 175px ;
   grid-template-rows: 0.6fr 0.4fr;
   grid-template-areas:
-    "mark-assessment mark-assessment mark-assessment mark-all-assessment mark-all-assessment"
-    "new-student new-student new-assessment new-assessment empty"
+    "mark-assessment mark-assessment mark-assessment mark-all-assessment"
+    "new-student new-assessment empty empty"
 }
 .button-mark-assessment{
   grid-area: mark-assessment;
   font-size: 22px;
-  border-radius: 10px 10px 0px 0px
+  border-radius: 10px 10px 10px 0px
 }
 .button-mark-all-assessment{
   grid-area: mark-all-assessment;
@@ -144,7 +124,7 @@
 }
 .button-new-assessment{
   grid-area: new-assessment;
-  border-radius: 0px 10px 10px 0px
+  border-radius: 0px 0px 10px 0px
 }
 .negative-button{
   background-color: #bcbcbc;
@@ -165,17 +145,15 @@ button:hover {
 }
 .form-container{
   grid-area: main;
+  width: 700px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-content: flex-start;
   background-color: #eeeeee;
-  /* border-style: solid;
-  border-width: 2px;
-  border-color: red; */
 }
 .form-tile{
-  width: 500px;
+  width: 525px;
   margin-top: 10px;
   line-height: 25px;
   align-self: flex-start;
@@ -187,7 +165,7 @@ button:hover {
 }
 .form-title{
   background-color: #90caf9;
-  line-height: 40px;
+  line-height: 50px;
   padding-left: 20px;
   border-top: solid #5d99c6 5px;
 }
@@ -195,19 +173,75 @@ button:hover {
   width: 100%;
   height:40px;
   background-color: white;
+  outline: none;
   border-top: solid #5d99c6 2px;
   border-bottom: solid #5d99c6 2px;
 }
+.form-multi-field{
+  width: 60%;
+  height: 38px;
+  float: right;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+}
 .form-text{
     padding-left: 20px;
+    line-height: 40px;
 }
 .form-confirm-button{
   padding: 5px 25px;
-  width: 300px;
+  width: 310px;
   border-radius: 0px 0px 0px 10px;
 }
 .form-cancel-button{
   padding: 5px 25px;
-  width: 200px;
+  width: 215px;
   border-radius: 0px 0px 10px 0px;
+}
+.student-details-head{
+  background-color: #90caf9;
+  border-top: solid #5d99c6 5px;
+  display:grid;
+  grid-template-columns: 1fr 50px 100px;
+  grid-template-rows: 50px;
+  grid-template-areas:
+    "detail-name detail-mark detail-grade";
+}
+.student-details-name{
+  grid-area: detail-name;
+  line-height: 50px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+.student-details-mark{
+  grid-area: detail-mark;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+}
+.student-details-grade{
+  grid-area: detail-grade;
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.student-details-body{
+  font-size: 16px;
+  display:grid;
+  grid-template-columns: 1fr 50px 100px;
+  grid-template-rows: 30px;
+  grid-template-areas:
+    "assessment-name assessment-grade assessment-button"
+}
+.student-assessment-name{
+  grid-area: assessment-name;
+  line-height: 30px;
+  padding-left: 20px;
+}
+.student-assessment-mark{
+  grid-area: assessment-grade;
+  line-height: 30px;
+  text-align: center;
 }

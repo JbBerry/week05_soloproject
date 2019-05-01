@@ -18,7 +18,7 @@ class Students{
       .then((studentData) => {
         this.studentData = studentData;
         studentData.forEach((student) =>{
-          let totalMark = 0;
+          let totalMark = null;
           student.marks.forEach((mark,i) =>{
             totalMark += student.marks[i].score
           });

@@ -30,7 +30,7 @@ class AssessmentForm {
 
     const cancelButton = document.createElement('button');
     cancelButton.classList.add('negative-button','form-cancel-button');
-    cancelButton.textContent = `cancel`;
+    cancelButton.textContent = `Cancel`;
     cancelButton.addEventListener('click', (event) => {
       this.container.innerHTML = '';
     });

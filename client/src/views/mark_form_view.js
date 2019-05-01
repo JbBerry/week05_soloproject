@@ -39,7 +39,7 @@ class MarkForm {
     studentDescription.textContent = `Student Name:`;
 
     const studentName = document.createElement('select');
-    studentName.classList.add('form-field');
+    studentName.classList.add('form-multi-field');
       let blankOption = document.createElement('option');
       blankOption.value = "";
       studentName.appendChild(blankOption)
@@ -56,7 +56,7 @@ class MarkForm {
     assessmentDescription.textContent = `Assignment Title:`;
 
     const assessmentTitle = document.createElement('select');
-    assessmentTitle.classList.add('form-field');
+    assessmentTitle.classList.add('form-multi-field');
       let blankOption2 = document.createElement('option');
       blankOption2.value = "";
       assessmentTitle.appendChild(blankOption2)
@@ -70,11 +70,10 @@ class MarkForm {
 
     const markDescription = document.createElement('label');
     markDescription.classList.add('form-text');
-    markDescription.textContent = `Assignment Mark:`;
+    markDescription.textContent = `Assignment Mark: %`;
 
     const assessmentMark = document.createElement('input');
-    assessmentMark.classList.add('form-field');
-    // assessmentMark.placeholder = ('Mark');
+    assessmentMark.classList.add('form-multi-field');
     assessmentMark.id="score";
 
     const addButton = document.createElement('button');
@@ -83,7 +82,7 @@ class MarkForm {
 
     const cancelButton = document.createElement('button');
     cancelButton.classList.add('negative-button','form-cancel-button');
-    cancelButton.textContent = `cancel`;
+    cancelButton.textContent = `Cancel`;
     cancelButton.addEventListener('click', (event) => {
       this.container.innerHTML = '';
     });
@@ -92,7 +91,14 @@ class MarkForm {
     buttons.appendChild(addButton);
     buttons.appendChild(cancelButton);
 
-    const form = document.createElement('form');
+    const form = document.createElement('div');
+    const studentField = document.createElement('div');
+    studentField.classList.add('description');
+    const assessmentField = document.createElement('div');
+    assessmentField.classList.add('description');
+    const markField = document.createElement('div');
+    markField.classList.add('description');
+
 
     const tile = document.createElement('form');
     tile.classList.add('form-tile');
@@ -102,16 +108,22 @@ class MarkForm {
       newMark.student_id = event.target['name'].value;
       newMark.assessment_id = event.target['title'].value;
       PubSub.publish('Add-New-Mark', newMark);
-      details.reset();
+      tile.reset();
     });
 
     tile.appendChild(formDescription);
-    form.appendChild(studentDescription);
-    form.appendChild(studentName);
-    form.appendChild(assessmentDescription);
-    form.appendChild(assessmentTitle);
-    form.appendChild(markDescription);
-    form.appendChild(assessmentMark);
+    studentField.appendChild(studentDescription);
+    studentField.appendChild(studentName);
+    form.appendChild(studentField);
+
+    assessmentField.appendChild(assessmentDescription);
+    assessmentField.appendChild(assessmentTitle);
+    form.appendChild(assessmentField);
+
+    markField.appendChild(markDescription);
+    markField.appendChild(assessmentMark);
+    form.appendChild(markField);
+
     form.appendChild(buttons);
     tile.appendChild(form);
     this.container.appendChild(tile)
