@@ -1,0 +1,29 @@
+.background{
+  background-color: #f5f5f5;
+}
+.contain{
+  background-color: #E3D4C2;
+}
+.tile{
+  background-color: #B4D5CE;
+}
+.title{
+  background-color: #AC8793;
+}
+.heavy-border{
+  border-top: solid #3D4F41 20px;
+}
+.medium-border{
+  border-top: solid #3D4F41 5px;
+}
+.light-border{
+  border-top: solid #3D4F41 2px;
+}
+.positive{
+  background-color: #91D0DA;
+  border: solid #399dac 2px
+}
+.negative{
+  background-color: #b5b5b5;
+  border: solid #737373 2px
+}
