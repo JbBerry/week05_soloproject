@@ -11,7 +11,7 @@ class Grades {
       return "D";}
     if (mark > 40){
       return "E";}
-    if (mark > 30){
+    if (mark <= 40){
       return "F";}
   };
 }

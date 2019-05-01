@@ -4,7 +4,7 @@ var SqlRunner = require('../db/sql_runner');
 
 /* GET all students. */
 router.get('/', function(req, res, next) {
-  SqlRunner.run("SELECT * FROM students")
+  SqlRunner.run("SELECT * FROM students ORDER BY student_id ASC")
   .then((result)=>{
     res.status(200).json(result.rows);
   })
@@ -12,9 +12,9 @@ router.get('/', function(req, res, next) {
 
 /* GET all students and their assessment marks. */
 router.get('/all', function(req, res, next) {
-  SqlRunner.run('SELECT * FROM students')
+  SqlRunner.run('SELECT * FROM students ORDER BY student_id ASC')
   .then((students)=>{
-    SqlRunner.run('SELECT * FROM marks INNER JOIN assessments ON assessments.assessment_id = marks.assessment_id')
+    SqlRunner.run('SELECT * FROM marks INNER JOIN assessments ON assessments.assessment_id = marks.assessment_id ORDER BY mark_id ASC')
     .then((marks)=>{
       const studentList = students.rows;
       const markList = marks.rows;

@@ -23,6 +23,7 @@ class StudentForm {
     newStudentName.classList.add('form-field');
     newStudentName.placeholder=('   Name');
     newStudentName.id="name";
+    newStudentName.setAttribute('required','');
 
     const addButton = document.createElement('button');
     addButton.classList.add('positive-button','form-confirm-button');
@@ -44,11 +45,11 @@ class StudentForm {
     const tile = document.createElement('div');
     tile.classList.add('form-tile');
     tile.addEventListener('submit', (event) => {
+      event.preventDefault();
       const newStudent = {};
       newStudent.name = event.target['name'].value;
-      console.log(`publishing ${newStudent.name}`);
       PubSub.publish('Add-New-Student', newStudent);
-      details.reset();
+      form.reset();
     });
 
 

@@ -23,6 +23,7 @@ class AssessmentForm {
     newAssessmentName.classList.add('form-field');
     newAssessmentName.placeholder=('   Title');
     newAssessmentName.id="title";
+    newAssessmentName.setAttribute('required','');
 
     const addButton = document.createElement('button');
     addButton.classList.add('positive-button','form-confirm-button');
@@ -44,10 +45,11 @@ class AssessmentForm {
     const tile = document.createElement('div');
     tile.classList.add('form-tile');
     tile.addEventListener('submit', (event) => {
+      event.preventDefault();
       const newAssessment = {};
       newAssessment.title = event.target['title'].value;
       PubSub.publish('Add-New-Assessment', newAssessment);
-      details.reset();
+      form.reset();
     });
 
     tile.appendChild(description);

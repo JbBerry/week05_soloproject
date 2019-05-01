@@ -5,19 +5,26 @@ class StudentView{
 
   constructor (container) {
       this.container = document.querySelector('#student-container')
+      this.studentData = [];
     }
 
   bindEvents() {
     PubSub.subscribe('All-Student-Data-Ready', (event) => {
-      // console.log(`All-Student-Data received`);
-      const studentData = event.detail;
-      this.render(studentData);
+      this.container.innerHTML = '';
+      this.studentData = event.detail;
+      this.renderStudentData();
     });
   }
 
-  render(studentData) {
-    this.container.innerHTML = '';
-    studentData.forEach((student) => {
+  updateDetails(){
+    PubSub.subscribe('Updated-Mark-Details', (event) => {
+      this.container.innerHTML = '';
+      this.renderStudentData();
+    })
+  }
+
+  renderStudentData() {
+    this.studentData.forEach((student) => {
     const tile = this.createTile(student);
     this.container.appendChild(tile);
     });
@@ -62,8 +69,6 @@ class StudentView{
     tile.classList.add('student-tile');
     tile.addEventListener('click', (event) => {
       PubSub.publish('View-Student-Details', student);
-      console.log(`view details for ${student.name}`);
-      console.log(student);
     });
 
     tile.appendChild(studentName);

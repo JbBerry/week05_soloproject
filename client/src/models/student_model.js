@@ -53,6 +53,10 @@ class Students{
       const url = `http://localhost:3000/students`;
       const request = new RequestHelper(url);
       request.post(newStudent)
+      .then(() => {
+        this.getData()
+        this.getNames()
+      })
       .catch(console.error);
     });
   };

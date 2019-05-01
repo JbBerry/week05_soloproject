@@ -40,8 +40,11 @@ class MarkForm {
 
     const studentName = document.createElement('select');
     studentName.classList.add('form-multi-field');
+    studentName.setAttribute('required','');
       let blankOption = document.createElement('option');
       blankOption.value = "";
+      blankOption.setAttribute('disabled','');
+      blankOption.setAttribute('selected','');
       studentName.appendChild(blankOption)
     this.studentNames.forEach((student) =>{
       const option = document.createElement('option');
@@ -57,8 +60,11 @@ class MarkForm {
 
     const assessmentTitle = document.createElement('select');
     assessmentTitle.classList.add('form-multi-field');
+    assessmentTitle.setAttribute('required','');
       let blankOption2 = document.createElement('option');
       blankOption2.value = "";
+      blankOption2.setAttribute('disabled','');
+      blankOption2.setAttribute('selected','');
       assessmentTitle.appendChild(blankOption2)
     this.assessmentTitles.forEach((assessment) =>{
       const option = document.createElement('option');
@@ -74,6 +80,7 @@ class MarkForm {
 
     const assessmentMark = document.createElement('input');
     assessmentMark.classList.add('form-multi-field');
+    assessmentMark.setAttribute('required','');
     assessmentMark.id="score";
 
     const addButton = document.createElement('button');
@@ -103,6 +110,7 @@ class MarkForm {
     const tile = document.createElement('form');
     tile.classList.add('form-tile');
     tile.addEventListener('submit', (event) => {
+      event.preventDefault();
       const newMark = {};
       newMark.score = event.target['score'].value;
       newMark.student_id = event.target['name'].value;

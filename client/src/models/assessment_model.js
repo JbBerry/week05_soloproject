@@ -40,6 +40,7 @@ class Assessments{
       const url = `http://localhost:3000/assessments`;
       const request = new RequestHelper(url);
       request.post(newAssessment)
+      .then(() => {this.getTitles()})
       .catch(console.error);
     });
   };

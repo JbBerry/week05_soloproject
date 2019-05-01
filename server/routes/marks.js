@@ -27,8 +27,8 @@ router.delete('/:id', function(req, res) {
 });
 
 /* UPDATE a mark with id :id. */
-router.put('/:id', function (req,res){
-  SqlRunner.run('UPDATE marks SET score = $1 WHERE mark_id = $2', [req.body.mark_id, req.params.id])
+router.put('/', function (req,res){
+  SqlRunner.run('UPDATE marks SET score = $1 WHERE mark_id = $2', [req.body.score, req.body.mark_id])
   .then((result) => {
     res.status(200).json(result);
   });

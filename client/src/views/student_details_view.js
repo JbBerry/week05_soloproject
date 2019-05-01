@@ -10,13 +10,18 @@ class StudentDetailsView {
   bindEvents() {
     PubSub.subscribe('View-Student-Details', (event) => {
       this.student = event.detail;
-      this.container.innerHTML = '';
-      console.log(`received ${this.student.name}`);
       this.renderStudentDetails();
     });
   }
 
+  updateDetails(){
+    PubSub.subscribe('Updated-Mark-Details', (event) => {
+      this.renderStudentDetails();
+    })
+  }
+
   renderStudentDetails(){
+    this.container.innerHTML = '';
     const studentName = document.createElement('div');
     studentName.classList.add('student-details-name');
     studentName.textContent = `${this.student.name}`;
@@ -65,8 +70,17 @@ class StudentDetailsView {
       assessmentMark.classList.add('student-assessment-mark');
       assessmentMark.textContent = `${assessmentList[i].score} %`;
 
+      const editButton = document.createElement('button');
+      editButton.classList.add('negative-button', 'student-assessment-button','form-edit-button');
+      editButton.textContent = `Edit`;
+      editButton.addEventListener('click', (event) => {
+        const editMark = assessmentList[i];
+        PubSub.publish('Edit-Assessment-Mark', editMark);
+      });
+
       assessmentRow.appendChild(assessmentTitle);
       assessmentRow.appendChild(assessmentMark);
+      assessmentRow.appendChild(editButton);
       tile.appendChild(assessmentRow);
     });
 
