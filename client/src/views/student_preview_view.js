@@ -1,7 +1,7 @@
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js');
 
-class StudentView{
+class StudentPreviewView{
 
   constructor (container) {
       this.container = document.querySelector('#student-container')
@@ -32,41 +32,45 @@ class StudentView{
 
   createTile(student) {
     const studentName = document.createElement('div');
-    studentName.classList.add('student-name');
+    studentName.classList.add('student-name','title','medium-border');
     studentName.textContent = `${student.name}`;
 
     const currentMark = document.createElement('div');
-    currentMark.classList.add('student-mark')
+    currentMark.classList.add('student-mark','title','medium-border')
     if (student.marks.length > 0){
       currentMark.innerHTML = `${student.average_mark} %`
     };
 
     const currentGrade = document.createElement('div');
-    currentGrade.classList.add('student-grade')
+    currentGrade.classList.add('student-grade','title','medium-border')
     if (student.marks.length > 0){
       currentGrade.innerHTML = `${student.grade}`;
     };
 
     const text = document.createElement('div');
-    text.classList.add('student-text','description');
+    text.classList.add('student-text','light-border');
     if (student.marks.length > 0){
       text.innerHTML = 'Last Assignment';
     };
 
     const assessment = document.createElement('div');
-    assessment.classList.add('student-assessment','description');
+    assessment.classList.add('student-assessment','light-border');
     if (student.marks.length > 0){
       assessment.textContent = student.marks[student.marks.length -1].title;
     };
 
     const assessmentMark = document.createElement('div');
-    assessmentMark.classList.add('student-assessment-grade','description');
+    assessmentMark.classList.add('student-assessment-grade','light-border');
     if (student.marks.length > 0){
       assessmentMark.textContent = `${student.marks[student.marks.length -1].score} %`;
     };
 
+    const emptyRow = document.createElement('div');
+    emptyRow.classList.add('student-empty','bottom-row','light-border');
+
+
     const tile = document.createElement('div');
-    tile.classList.add('student-tile');
+    tile.classList.add('tile','student-tile');
     tile.addEventListener('click', (event) => {
       PubSub.publish('View-Student-Details', student);
     });
@@ -77,9 +81,10 @@ class StudentView{
     tile.appendChild(text);
     tile.appendChild(assessment);
     tile.appendChild(assessmentMark);
+    tile.appendChild(emptyRow);
 
     return tile;
   };
 
 }
-module.exports =  StudentView;
+module.exports =  StudentPreviewView;

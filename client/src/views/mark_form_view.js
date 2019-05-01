@@ -30,9 +30,9 @@ class MarkForm {
   }
 
   newMarkTile(){
-    const formDescription = document.createElement('div');
-    formDescription.classList.add('form-title');
-    formDescription.textContent = `Assignment Marked`;
+    const formTitle = document.createElement('div');
+    formTitle.classList.add('title','medium-border','form-title');
+    formTitle.textContent = `Assignment Marked`;
 
     const studentDescription = document.createElement('label');
     studentDescription.classList.add('form-text');
@@ -84,11 +84,11 @@ class MarkForm {
     assessmentMark.id="score";
 
     const addButton = document.createElement('button');
-    addButton.classList.add('positive-button','form-confirm-button');
+    addButton.classList.add('positive','form-confirm-button');
     addButton.textContent = `Mark Assignment`;
 
     const cancelButton = document.createElement('button');
-    cancelButton.classList.add('negative-button','form-cancel-button');
+    cancelButton.classList.add('negative','form-cancel-button');
     cancelButton.textContent = `Cancel`;
     cancelButton.addEventListener('click', (event) => {
       this.container.innerHTML = '';
@@ -100,15 +100,15 @@ class MarkForm {
 
     const form = document.createElement('div');
     const studentField = document.createElement('div');
-    studentField.classList.add('description');
+    studentField.classList.add('light-border','form-field');
     const assessmentField = document.createElement('div');
-    assessmentField.classList.add('description');
+    assessmentField.classList.add('light-border','form-field');
     const markField = document.createElement('div');
-    markField.classList.add('description');
+    markField.classList.add('light-border','form-field');
 
 
     const tile = document.createElement('form');
-    tile.classList.add('form-tile');
+    tile.classList.add('tile','form-tile');
     tile.addEventListener('submit', (event) => {
       event.preventDefault();
       const newMark = {};
@@ -119,7 +119,7 @@ class MarkForm {
       tile.reset();
     });
 
-    tile.appendChild(formDescription);
+    tile.appendChild(formTitle);
     studentField.appendChild(studentDescription);
     studentField.appendChild(studentName);
     form.appendChild(studentField);

@@ -39,16 +39,16 @@ class StudentDetailsView {
     };
 
     const text = document.createElement('div');
-    text.classList.add('form-text','description');
+    text.classList.add('form-text','light-border');
     if (this.student.marks.length > 0){
       text.innerHTML = 'Recent Assignments';
     };
 
     const tileHead = document.createElement('div')
-    tileHead.classList.add('student-details-head');
+    tileHead.classList.add('title','medium-border','form-title','student-details-head');
 
     const tile = document.createElement('div');
-    tile.classList.add('form-tile');
+    tile.classList.add('tile','form-tile');
 
     tileHead.appendChild(studentName);
     tileHead.appendChild(currentMark);
@@ -60,7 +60,7 @@ class StudentDetailsView {
     const assessmentList = this.student.marks;
     assessmentList.forEach((assessment,i)=>{
       const assessmentRow = document.createElement('div');
-      assessmentRow.classList.add('form-text','description','student-details-body');
+      assessmentRow.classList.add('form-text','light-border','student-details-body');
 
       const assessmentTitle = document.createElement('div');
       assessmentTitle.classList.add('student-assessment-name');
@@ -71,7 +71,7 @@ class StudentDetailsView {
       assessmentMark.textContent = `${assessmentList[i].score} %`;
 
       const editButton = document.createElement('button');
-      editButton.classList.add('negative-button', 'student-assessment-button','form-edit-button');
+      editButton.classList.add('negative', 'student-assessment-button','form-edit-button');
       editButton.textContent = `Edit`;
       editButton.addEventListener('click', (event) => {
         const editMark = assessmentList[i];
@@ -83,6 +83,10 @@ class StudentDetailsView {
       assessmentRow.appendChild(editButton);
       tile.appendChild(assessmentRow);
     });
+
+    const emptyRow = document.createElement('div');
+    emptyRow.classList.add('bottom-row','light-border');
+    tile.appendChild(emptyRow);
 
     this.container.appendChild(tile);
   }

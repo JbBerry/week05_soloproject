@@ -22,7 +22,7 @@ class Students{
           student.marks.forEach((mark,i) =>{
             totalMark += student.marks[i].score
           });
-          const averageMark = totalMark / student.marks.length;
+          const averageMark = Math.floor(totalMark / student.marks.length);
           student.average_mark = averageMark;
           student.grade = grades.getGrade(averageMark);
 

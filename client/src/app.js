@@ -6,7 +6,7 @@ const AssessmentFormView = require('./views/assessment_form_view.js');
 const EditMarkView = require('./views/edit_mark_view.js');
 const MarkFormView = require('./views/mark_form_view.js');
 const StudentFormView = require('./views/student_form_view.js');
-const StudentView = require('./views/student_view.js');
+const StudentPreviewView = require('./views/student_preview_view.js');
 const StudentDetailsView = require('./views/student_details_view.js');
 
 
@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const studentFormView = new StudentFormView();
   studentFormView.bindEvents();
 
-  const studentView = new StudentView();
-  studentView.bindEvents();
-  studentView.updateDetails();
+  const studentPreviewView = new StudentPreviewView();
+  studentPreviewView.bindEvents();
+  studentPreviewView.updateDetails();
 
   const studentDetailsView = new StudentDetailsView();
   studentDetailsView.bindEvents();

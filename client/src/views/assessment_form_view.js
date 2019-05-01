@@ -15,22 +15,22 @@ class AssessmentForm {
     })
   }
   newAssessmentTile(){
-    const description = document.createElement('label');
-    description.classList.add('form-title');
-    description.textContent = `New Assignment:`;
+    const formTitle = document.createElement('label');
+    formTitle.classList.add('title','medium-border','form-title');
+    formTitle.textContent = `New Assignment:`;
 
     const newAssessmentName = document.createElement('input');
-    newAssessmentName.classList.add('form-field');
+    newAssessmentName.classList.add('light-border','form-field');
     newAssessmentName.placeholder=('   Title');
     newAssessmentName.id="title";
     newAssessmentName.setAttribute('required','');
 
     const addButton = document.createElement('button');
-    addButton.classList.add('positive-button','form-confirm-button');
+    addButton.classList.add('positive','form-confirm-button');
     addButton.textContent = `Add New Assignment`;
 
     const cancelButton = document.createElement('button');
-    cancelButton.classList.add('negative-button','form-cancel-button');
+    cancelButton.classList.add('negative','form-cancel-button');
     cancelButton.textContent = `Cancel`;
     cancelButton.addEventListener('click', (event) => {
       this.container.innerHTML = '';
@@ -43,7 +43,7 @@ class AssessmentForm {
     const form = document.createElement('form');
 
     const tile = document.createElement('div');
-    tile.classList.add('form-tile');
+    tile.classList.add('tile','form-tile');
     tile.addEventListener('submit', (event) => {
       event.preventDefault();
       const newAssessment = {};
@@ -52,7 +52,7 @@ class AssessmentForm {
       form.reset();
     });
 
-    tile.appendChild(description);
+    tile.appendChild(formTitle);
     form.appendChild(newAssessmentName);
     form.appendChild(buttons)
     tile.appendChild(form);

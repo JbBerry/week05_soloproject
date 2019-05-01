@@ -1,29 +1,31 @@
 .background{
-  background-color: #f5f5f5;
+  background-color: #e4e7e7;
 }
 .contain{
-  background-color: #E3D4C2;
+  background-color: #c2d5d6;
 }
 .tile{
-  background-color: #B4D5CE;
+  background-color: #9fc6ba;
 }
 .title{
-  background-color: #AC8793;
+  background-color: #6AAAB1;
 }
 .heavy-border{
-  border-top: solid #3D4F41 20px;
+  border-top: solid #1A4F6C 15px;
+  border-left: solid #1A4F6C 2px;
+  border-right: solid #1A4F6C 2px;
 }
 .medium-border{
-  border-top: solid #3D4F41 5px;
+  border-top: solid #1A4F6C 5px;
 }
 .light-border{
-  border-top: solid #3D4F41 2px;
+  border-top: solid #1A4F6C 2px;
 }
 .positive{
-  background-color: #91D0DA;
-  border: solid #399dac 2px
+  background-color: #F99559;
+  border: solid #1A4F6C 2px
 }
 .negative{
-  background-color: #b5b5b5;
-  border: solid #737373 2px
+  background-color: #b9c6c6;
+  border: solid #1A4F6C 2px
 }

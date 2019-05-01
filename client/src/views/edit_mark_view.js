@@ -16,11 +16,11 @@ class EditMarkView {
 
   renderEditMarkForm(){
     const description = document.createElement('label');
-    description.classList.add('form-title');
+    description.classList.add('title','medium-border','form-title');
     description.textContent = `Edit Mark:`;
 
     const assessmentRow = document.createElement('div');
-    assessmentRow.classList.add('description');
+    assessmentRow.classList.add('light-border');
 
     const assessmentTitle = document.createElement('label');
     assessmentTitle.classList.add('form-text');
@@ -36,11 +36,11 @@ class EditMarkView {
     assessmentRow.appendChild(assessmentMark);
 
     const addButton = document.createElement('button');
-    addButton.classList.add('positive-button','form-confirm-button');
+    addButton.classList.add('positive','form-confirm-button');
     addButton.textContent = `Update`;
 
     const cancelButton = document.createElement('button');
-    cancelButton.classList.add('negative-button','form-cancel-button');
+    cancelButton.classList.add('negative','form-cancel-button');
     cancelButton.textContent = `Cancel`;
     cancelButton.addEventListener('click', (event) => {
       tile.innerHTML = '';
@@ -53,7 +53,7 @@ class EditMarkView {
     const form = document.createElement('div');
 
     const tile = document.createElement('form');
-    tile.classList.add('form-tile');
+    tile.classList.add('tile','form-tile');
     tile.addEventListener('submit', (event) => {
       event.preventDefault()
       this.mark.score = assessmentMark.value;
