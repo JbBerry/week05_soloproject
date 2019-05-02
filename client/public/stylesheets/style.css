@@ -126,14 +126,10 @@
   border-radius: 10px;
   display: grid;
   margin: 10px;
-  /* margin-top: 5px;
-  margin-bottom: 5px; */
 }
 .form-title{
-  /* background-color: #90caf9; */
   line-height: 50px;
   padding-left: 20px;
-  /* border-top: solid #5d99c6 5px; */
 }
 .form-field{
   width: 100%;
@@ -145,6 +141,7 @@
   height: 38px;
   float: right;
   border-radius: 4px;
+  outline: none;
 }
 .form-text{
     padding-left: 20px;

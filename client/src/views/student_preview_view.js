@@ -16,13 +16,6 @@ class StudentPreviewView{
     });
   }
 
-  updateDetails(){
-    PubSub.subscribe('Updated-Mark-Details', (event) => {
-      this.container.innerHTML = '';
-      this.renderStudentData();
-    })
-  }
-
   renderStudentData() {
     this.studentData.forEach((student) => {
     const tile = this.createTile(student);
@@ -72,7 +65,7 @@ class StudentPreviewView{
     const tile = document.createElement('div');
     tile.classList.add('tile','student-tile');
     tile.addEventListener('click', (event) => {
-      PubSub.publish('View-Student-Details', student);
+      PubSub.publish('View-Student-Details', student.student_id);
     });
 
     tile.appendChild(studentName);

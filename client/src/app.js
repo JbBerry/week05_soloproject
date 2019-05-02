@@ -29,11 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const studentPreviewView = new StudentPreviewView();
   studentPreviewView.bindEvents();
-  studentPreviewView.updateDetails();
 
   const studentDetailsView = new StudentDetailsView();
   studentDetailsView.bindEvents();
-  studentDetailsView.updateDetails();
+  studentDetailsView.viewDetails();
 
 
   const assessmentModel = new AssessmentModel();

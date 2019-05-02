@@ -1,21 +1,39 @@
 const PubSub = require('../helpers/pub_sub.js');
+const Grades = require('../models/grades.js');
+
+const grades = new Grades();
 
 class StudentDetailsView {
 
   constructor() {
     this.container = document.querySelector('#form-container')
-    this.student = {};
+    this.studentData = [];
+    this.studentID = null;
+    this.student ={};
   };
 
   bindEvents() {
-    PubSub.subscribe('View-Student-Details', (event) => {
-      this.student = event.detail;
-      this.renderStudentDetails();
+    PubSub.subscribe('All-Student-Data-Ready', (event) => {
+      this.studentData = event.detail;
     });
   }
 
-  updateDetails(){
-    PubSub.subscribe('Updated-Mark-Details', (event) => {
+  viewDetails(){
+    PubSub.subscribe('View-Student-Details', (event) => {
+      this.studentID = event.detail;
+      this.studentData.forEach((student,i)=>{
+        if (student.student_id === this.studentID){
+          this.student = this.studentData[i];
+        }
+      });
+      let totalMark = 0;
+      this.student.marks.forEach((mark,i) =>{
+        totalMark += parseInt(this.student.marks[i].score)
+      });
+      const averageMark = Math.floor(totalMark / this.student.marks.length);
+      this.student.average_mark = averageMark;
+      this.student.grade = grades.getGrade(averageMark);
+
       this.renderStudentDetails();
     })
   }

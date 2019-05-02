@@ -20,7 +20,7 @@ class Students{
         studentData.forEach((student) =>{
           let totalMark = null;
           student.marks.forEach((mark,i) =>{
-            totalMark += student.marks[i].score
+            totalMark += parseInt(student.marks[i].score);
           });
           const averageMark = Math.floor(totalMark / student.marks.length);
           student.average_mark = averageMark;

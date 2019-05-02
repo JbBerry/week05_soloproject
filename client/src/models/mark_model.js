@@ -20,12 +20,15 @@ class Marks{
   editMark(mark){
     PubSub.subscribe('Edit-Mark', (event) =>{
       const editMark = event.detail
+      const studentID = editMark.student_id;
       const url = `http://localhost:3000/marks`;
       const request = new RequestHelper(url);
       request.put(editMark)
       .then(() => {
         studentModel.getData();
-        PubSub.publish('Updated-Mark-Details', '');
+      })
+        .then(() =>{
+          PubSub.publish('View-Student-Details', studentID);
       })
       .catch(console.error);
     });
