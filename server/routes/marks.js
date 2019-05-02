@@ -18,6 +18,24 @@ router.post('/', function(req, res){
   });
 });
 
+/* ADD multiple NEW marks. */
+router.post('/multiple', function(req, res){
+
+  const myPromises = [];
+
+  req.body.forEach((mark,i) =>{
+    myPromises.push(
+      SqlRunner.run('INSERT INTO marks (score, student_id, assessment_id) VALUES ($1, $2, $3)', [mark.score, mark.student_id, mark.assessment_id])
+    )
+  })
+
+  Promise.all(myPromises)
+  .then((result) => {
+    res.status(201).json(result);
+  })
+
+});
+
 /* DELETE the mark with id :id. */
 router.delete('/:id', function(req, res) {
   SqlRunner.run('DELETE FROM marks WHERE mark_id = $1', [req.params.id])
